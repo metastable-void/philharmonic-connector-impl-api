@@ -1,0 +1,19 @@
+[package]
+name = "philharmonic-connector-impl-api"
+version = "0.0.0"
+edition = "2024"
+rust-version = "1.88"
+license = "Apache-2.0 OR MPL-2.0"
+readme = "README.md"
+repository = "https://github.com/metastable-void/philharmonic-connector-impl-api"
+description = "Trait-only API crate between the philharmonic-connector-service framework and per-implementation connector crates. Non-crypto; holds the Implementation trait and re-exports from philharmonic-connector-common."
+
+[dependencies]
+
+[profile.release]
+opt-level = 3
+lto = true
+strip = true
+codegen-units = 1
+panic = "abort"
+overflow-checks = true
