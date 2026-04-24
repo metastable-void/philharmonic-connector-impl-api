@@ -9,10 +9,36 @@ this crate adheres to
 
 ## [Unreleased]
 
-Implementation pending. See the
-[Philharmonic workspace ROADMAP](https://github.com/metastable-void/philharmonic-workspace/blob/main/ROADMAP.md)
-for the phase that populates this crate.
+## [0.1.0] - 2026-04-24
 
-## [0.0.0]
+Initial substantive release: the trait-only API contract
+between the `philharmonic-connector-service` framework and the
+per-implementation `philharmonic-connector-impl-*` crates.
 
-Name reservation on crates.io. No functional content yet.
+### Added
+
+- `Implementation` async trait
+  (`fn name(&self) -> &str` +
+  `async fn execute(...) -> Result<JsonValue, ImplementationError>`),
+  declared with `#[async_trait]` for dyn-compatibility and a
+  `Send`-bounded returned future. See [the workspace doc on
+  why `async_trait`][async-trait-rationale].
+- Re-exports so impl crates can depend on this crate alone:
+  - `ConnectorCallContext` and `ImplementationError` from
+    `philharmonic-connector-common`.
+  - `JsonValue` alias for `serde_json::Value`.
+  - `async_trait` attribute macro from the `async-trait`
+    crate.
+
+### Scope boundaries
+
+- No cryptography, no COSE handling, no network transport.
+  Those live in the companion crates.
+- No HTTP client dependency. Per the workspace rule, impl
+  crates pick their own HTTP client — `reqwest` + `rustls-tls`
+  for runtime code, per CONTRIBUTING.md §10.9.
+- No tokio runtime dependency in the trait itself. Concrete
+  impls use tokio; the trait is runtime-agnostic beyond the
+  boxed-future shape that `#[async_trait]` implies.
+
+[async-trait-rationale]: https://github.com/metastable-void/philharmonic-workspace/blob/main/docs/design/08-connector-architecture.md
