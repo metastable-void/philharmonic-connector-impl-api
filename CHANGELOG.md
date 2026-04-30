@@ -9,6 +9,8 @@ this crate adheres to
 
 ## [Unreleased]
 
+## [0.1.1]
+
 ## [0.1.0] - 2026-04-24
 
 Initial substantive release: the trait-only API contract
