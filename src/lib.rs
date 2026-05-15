@@ -16,7 +16,7 @@
 //! - Re-exports of the caller-facing types the trait signature uses:
 //!   [`ConnectorCallContext`] and [`ImplementationError`] from
 //!   [`philharmonic-connector-common`], [`JsonValue`] (an alias for
-//!   [`serde_json::Value`]), and the [`async_trait`] attribute macro
+//!   [`serde_json::Value`]), and the [`macro@async_trait`] attribute macro
 //!   from the [`async-trait`] crate.
 //!
 //! Depending on this crate directly gives an impl crate every type it
@@ -36,7 +36,7 @@
 //!   `rustls-tls`) — this crate neither provides nor constrains that.
 //! - No `tokio` runtime dependency. Concrete impls use tokio; the
 //!   trait itself is runtime-agnostic (beyond requiring the
-//!   [`async_trait`] boxed-future shape).
+//!   [`macro@async_trait`] boxed-future shape).
 //!
 //! ## Why `async_trait` and not native async-fn-in-traits
 //!

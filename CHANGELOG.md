@@ -9,6 +9,17 @@ this crate adheres to
 
 ## [Unreleased]
 
+### Changed
+- Internal: lib-level rustdoc intra-doc links to
+  ``[`async_trait`]`` now use the disambiguating
+  ``[`macro@async_trait`]`` form so the rustdoc resolver
+  picks the attribute macro rather than emitting an
+  ambiguity warning (the import brings both the crate /
+  module and the attribute macro into scope under the same
+  bare name). Doc rendering is unchanged; rustdoc no longer
+  emits the warning during `pre-landing.sh` runs. No
+  behaviour or API change.
+
 ## [0.1.3] - 2026-05-14
 
 ### Changed
